@@ -55,6 +55,10 @@ import SwiftUI
 }
 
 MainActor.assumeIsolated {
+    if let i = CommandLine.arguments.firstIndex(of: "--render"), i + 1 < CommandLine.arguments.count {
+        renderScreenshots(to: CommandLine.arguments[i + 1])
+        exit(0)
+    }
     let app = NSApplication.shared
     app.setActivationPolicy(.accessory)
     let delegate = AppDelegate()
